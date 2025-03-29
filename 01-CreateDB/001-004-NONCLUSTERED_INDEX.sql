@@ -1,0 +1,26 @@
+USE [GenussRest]
+GO
+
+SET ANSI_PADDING ON
+GO
+
+ALTER TABLE [dbo].[GastStatus] ADD  CONSTRAINT [UQ__GastStat__05E7698A33579491] UNIQUE NONCLUSTERED 
+(
+	[StatusName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+
+
+ALTER TABLE [dbo].[Tische] ADD  CONSTRAINT [UQ__Tische__244AE5FE553002C0] UNIQUE NONCLUSTERED 
+(
+	[Tischnummer] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+
+/* Es empfiehlt sich, in Tabellen mit hoher Leselast (Bestellungen, Reservierungen) Indizes auf Schlüsselspalten (GastID, Datum, StatusProsID usw.) hinzuzufügen.
+
+CREATE NONCLUSTERED INDEX idx_Bestellungen_GastID 
+  ON Bestellungen (GastID);
+
+CREATE NONCLUSTERED INDEX idx_Reservierungen_Datum 
+  ON Reservierungen (Datum); */
